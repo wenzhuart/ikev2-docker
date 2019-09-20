@@ -50,6 +50,7 @@ cp /ipsec.conf .
 sed -i '$ d' ipsec.conf
 echo "    leftid=$FQN" >> ipsec.conf
 
+echo "Client certificate (save below as XXX.pem)"
 cd vpn-certs
 cat server-root-ca.pem
 

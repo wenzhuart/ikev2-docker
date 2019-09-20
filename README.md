@@ -1,33 +1,30 @@
-# Effortless IKEv2 VPN in Docker
+## IKEv2 Docker
+forked from https://github.com/christophschlosser/ikev2-docker
 
-## Prerequisites
 
-First step: Install docker on your system and open port 500 and 4500 for UDP traffic in your firewall.
+#### Prerequisites
 
-## Option 1
+Install docker on your system and open port 500 and 4500 for UDP traffic in your firewall.
 
-Second step: Run configuration with
 
-`docker run --rm --name=vpn-cfg -it -v /your/path/config:/config cschlosser/ikev2-vpn configure`
+#### Build
 
-Fill in the blanks and everything you need will be generated for you.
+	docker build -t ikev2_test .
 
-Third step: Run
+#### Run for generate config
 
-`docker run --rm --name=vpn -d -v /your/path/config:/config --privileged -p 500:500/udp -p 4500:4500/udp cschlosser/ikev2-vpn`
+	docker run --rm --name=vpn-config -it -v $PWD/config:/config ikev2_test configure
 
-To start the vpn
+#### Run server
+	
+	docker run --rm -d --privileged \
+		--name=vpn-ikev2 \
+		-v $PWD/config:/config \
+		-p 500:500/udp -p 4500:4500/udp ikev2_test
 
-## Option 2
 
-Second step: Run
+- - -
+Note:
 
-`docker run --rm --name=vpn -it -v /your/path/config:/config --privileged -p 500:500/udp -p 4500:4500/udp cschlosser/ikev2-vpn`
 
-This will run the configuration the first time you're launching the container.
-
-## Client setup
-
-Last step: See this [Tutorial: Step 7 – Testing the VPN Connection on Windows, iOS, and macOS](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-ikev2-vpn-server-with-strongswan-on-ubuntu-16-04#step-7-%E2%80%93-testing-the-vpn-connection-on-windows,-ios,-and-macos) on how to configure your client.
-
-NOTE: Your certificate is stored in `/your/path/config/vpn-certs/` instead of `~/vpn-certs/`.
+certificate is stored in `$PWD/config/vpn-certs/`
