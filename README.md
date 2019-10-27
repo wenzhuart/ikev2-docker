@@ -6,6 +6,9 @@ forked from https://github.com/christophschlosser/ikev2-docker
 
 Install docker on your system and open port 500 and 4500 for UDP traffic in your firewall.
 
+#### clone from GitHub
+
+	git clone https://github.com/wenzhuart/ikev2-docker
 
 #### Build
 
@@ -15,10 +18,19 @@ Install docker on your system and open port 500 and 4500 for UDP traffic in your
 
 	docker run --rm --name=vpn-config -it -v $PWD/config:/config ikev2_test configure
 
+then copy print-out as client cert locally
+
+**local command:**
+
+	touch vpn.pem
+	echo "
+	<paste print-out content here>
+	" > vpn.pem
+
+
 #### Run server
 	
 	docker run --rm -d --privileged --name=vpn-ikev2 -v $PWD/config:/config -p 500:500/udp -p 4500:4500/udp ikev2_test
-
 
 - - -
 Note:
