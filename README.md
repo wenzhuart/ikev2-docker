@@ -10,6 +10,10 @@ Install docker on your system and open port 500 and 4500 for UDP traffic in your
 
 	git clone https://github.com/wenzhuart/ikev2-docker
 
+#### go working directory
+	
+	cd ikev2_docker
+
 #### Build
 
 	docker build -t ikev2_test .
