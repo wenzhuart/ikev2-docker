@@ -36,6 +36,19 @@ then copy print-out as client cert locally
 	
 	docker run --rm -d --privileged --name=vpn-ikev2 -v $PWD/config:/config -p 500:500/udp -p 4500:4500/udp ikev2_test
 
+#### Run server
+
+	ikev2:
+	  build: .
+	  image: ikev2_test
+	  ports:
+	    - "500:500/udp"
+	    - "4500:4500/udp"
+	  volumes:
+	    - "$PWD/config:/config"
+	  restart: always
+
+
 - - -
 Note:
 
