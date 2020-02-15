@@ -41,6 +41,7 @@ then copy print-out as client cert locally
 	ikev2:
 	  build: .
 	  image: ikev2_test
+	  privileged: true
 	  ports:
 	    - "500:500/udp"
 	    - "4500:4500/udp"
