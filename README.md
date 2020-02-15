@@ -39,7 +39,6 @@ then copy print-out as client cert locally
 #### Run server - docker-compose.yml
 
 	ikev2:
-	  build: .
 	  image: ikev2_test
 	  privileged: true
 	  ports:
