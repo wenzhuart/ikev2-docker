@@ -36,7 +36,7 @@ then copy print-out as client cert locally
 	
 	docker run --rm -d --privileged --name=vpn-ikev2 -v $PWD/config:/config -p 500:500/udp -p 4500:4500/udp ikev2_test
 
-#### Run server
+#### Run server - docker-compose.yml
 
 	ikev2:
 	  build: .
